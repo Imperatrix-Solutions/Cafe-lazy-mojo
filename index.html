@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe LazyMojo | Modern Cafe & Hangout in Jaipur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap">
+    <style>
+        :root {
+            --primary-brown: #8B4513;
+            --light-brown: #D2691E;
+            --cream: #FFF8E7;
+            --accent-green: #2E8B57;
+            --dark-text: #333333;
+            --light-text: #666666;
+            --shadow: 0 8px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+            --header-height: 70px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            background-color: #fefefe;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--primary-brown);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* WhatsApp Fixed Button */
+        .whatsapp-fixed {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .whatsapp-fixed:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        }
+        
+        /* Header & Navigation - Mobile First */
+        header {
+            background-color: rgba(255, 255, 255, 0.98);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            padding: 12px 0;
+            height: var(--header-height);
+            transition: var(--transition);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .logo-icon {
+            color: var(--light-brown);
+            font-size: 1.5rem;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            transition: var(--transition);
+            z-index: 101;
+        }
+        
+        .mobile-menu-btn:hover {
+            background-color: rgba(139, 69, 19, 0.05);
+        }
+        
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: white;
+            padding: 80px 20px 30px;
+            transform: translateX(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 99;
+            overflow-y: auto;
+        }
+        
+        .mobile-nav.active {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-nav ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .mobile-nav li {
+            margin-bottom: 15px;
+        }
+        
+        .mobile-nav a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            font-size: 1.2rem;
+            padding: 12px 0;
+            display: block;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .mobile-nav a:hover {
+            color: var(--light-brown);
+            padding-left: 10px;
+        }
+        
+        .mobile-nav-cta {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .cta-button {
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-align: center;
+        }
+        
+        .cta-primary {
+            background-color: var(--primary-brown);
+            color: white;
+        }
+        
+        .cta-primary:hover {
+            background-color: var(--light-brown);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+        }
+        
+        .cta-secondary {
+            background-color: transparent;
+            color: var(--primary-brown);
+            border: 2px solid var(--primary-brown);
+        }
+        
+        .cta-secondary:hover {
+            background-color: rgba(139, 69, 19, 0.05);
+            transform: translateY(-3px);
+        }
+        
+        /* Hide desktop navigation on mobile by default */
+        .desktop-nav {
+            display: none;
+        }
+        
+        .header-cta {
+            display: none;
+        }
+        
+        /* Hero Section - Mobile First */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://www.crazymasalafood.com/wp-content/images/cafe-lazy-mojo-1.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            margin-top: var(--header-height);
+            padding: 20px 0;
+        }
+        
+        .hero-content {
+            width: 100%;
+            padding: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+        
+        .hero-rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            font-size: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .stars {
+            color: #FFD700;
+            display: flex;
+            gap: 3px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        /* Quick Info Bar - Mobile First */
+        .quick-info {
+            background-color: var(--cream);
+            padding: 25px 0;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 15px 10px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--light-brown);
+            margin-bottom: 10px;
+        }
+        
+        .info-item h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .info-item p {
+            font-size: 0.85rem;
+            color: var(--light-text);
+        }
+        
+        /* Sections */
+        .section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--light-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* About Section - Mobile First */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 300px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-text h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .feature i {
+            color: var(--accent-green);
+            font-size: 1rem;
+        }
+        
+        /* Menu Highlights - Mobile First */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .menu-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .menu-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .menu-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .menu-item:hover .menu-img img {
+            transform: scale(1.1);
+        }
+        
+        .menu-content {
+            padding: 20px;
+        }
+        
+        .menu-content h3 {
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .menu-content p {
+            font-size: 0.95rem;
+            color: var(--light-text);
+            margin-bottom: 10px;
+        }
+        
+        .menu-price {
+            color: var(--light-brown);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        /* Experience Section - Mobile First */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .experience-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .experience-icon {
+            font-size: 2.2rem;
+            color: var(--light-brown);
+            margin-bottom: 15px;
+        }
+        
+        .experience-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Location & Contact - Mobile First */
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 300px;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            background-color: rgba(210, 105, 30, 0.1);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-brown);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .contact-text p {
+            font-size: 0.95rem;
+            color: var(--light-text);
+        }
+        
+        .contact-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+        
+        /* Reviews - Mobile First - FIXED STARS ALIGNMENT */
+        .reviews-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .overall-rating {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .rating-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-brown);
+            margin: 10px 0;
+        }
+        
+        /* FIXED: Center the stars horizontally */
+        .overall-rating .stars {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        .review-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .review-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .reviewer-name {
+            font-weight: 600;
+        }
+        
+        /* Image Gallery - Mobile First */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 25px;
+        }
+        
+        .gallery-item {
+            height: 150px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Footer - Mobile First */
+        footer {
+            background-color: #2A2118;
+            color: white;
+            padding: 50px 0 25px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--light-brown);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .social-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            background-color: var(--light-brown);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.85rem;
+        }
+        
+        /* Desktop Responsive Styles */
+        @media (min-width: 768px) {
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .experience-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .contact-buttons {
+                flex-direction: row;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .mobile-menu-btn, .mobile-nav {
+                display: none;
+            }
+            
+            /* Show desktop navigation on larger screens */
+            .desktop-nav {
+                display: flex;
+                align-items: center;
+            }
+            
+            .desktop-nav ul {
+                display: flex;
+                list-style: none;
+                gap: 30px;
+                margin-right: 30px;
+            }
+            
+            .desktop-nav a {
+                text-decoration: none;
+                color: var(--dark-text);
+                font-weight: 500;
+                font-size: 1rem;
+                transition: var(--transition);
+                position: relative;
+            }
+            
+            .desktop-nav a:hover {
+                color: var(--light-brown);
+            }
+            
+            .desktop-nav a::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                background-color: var(--light-brown);
+                bottom: -5px;
+                left: 0;
+                transition: var(--transition);
+            }
+            
+            .desktop-nav a:hover::after {
+                width: 100%;
+            }
+            
+            .header-cta {
+                display: flex;
+                gap: 15px;
+            }
+            
+            .about-content {
+                flex-direction: row;
+                align-items: center;
+                gap: 50px;
+            }
+            
+            .about-image {
+                height: 400px;
+                flex: 1;
+            }
+            
+            .about-text {
+                flex: 1;
+            }
+            
+            .menu-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .experience-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .contact-container {
+                flex-direction: row;
+                gap: 50px;
+            }
+            
+            .map-container {
+                flex: 1;
+                height: 400px;
+            }
+            
+            .contact-details {
+                flex: 1;
+            }
+            
+            .reviews-container {
+                flex-direction: row;
+                gap: 50px;
+            }
+            
+            .overall-rating {
+                flex: 0 0 250px;
+            }
+            
+            .review-cards {
+                flex: 1;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .review-card {
+                flex: 1;
+                min-width: 300px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* Close button for mobile menu */
+        .mobile-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-text);
+            cursor: pointer;
+            z-index: 102;
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Fixed Button -->
+    <a href="https://wa.me/919828950999?text=Hi%20Cafe%20LazyMojo%2C%20I'd%20like%20to%20make%20a%20reservation" target="_blank" class="whatsapp-fixed">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-mug-hot logo-icon"></i>
+                <h1>Cafe LazyMojo</h1>
+            </div>
+            
+            <!-- Desktop Navigation (hidden on mobile) -->
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#location">Location</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Desktop CTA (hidden on mobile) -->
+            <div class="header-cta">
+                <a href="tel:09828950999" class="cta-button cta-primary">
+                    <i class="fas fa-phone"></i> Call
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-nav" id="mobileNav">
+            <button class="mobile-close-btn" id="mobileCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#location">Location</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+            </ul>
+            
+            <div class="mobile-nav-cta">
+                <a href="tel:09828950999" class="cta-button cta-primary">
+                    <i class="fas fa-phone"></i> Call Now
+                </a>
+                <a href="https://maps.app.goo.gl/cazXCWmSw3ZTTigx7" target="_blank" class="cta-button cta-secondary">
+                    <i class="fas fa-map-marker-alt"></i> Directions
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content fade-in">
+            <h1>Where Coffee Meets Comfort</h1>
+            <p>Modern cafe and hangout with a spacious interior offering snacks, sandwiches, and sweets in the heart of Jaipur.</p>
+            
+            <div class="hero-rating">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>4.3/5 • 6,957 Reviews</span>
+            </div>
+            
+            <div class="hero-buttons">
+                <a href="#menu" class="cta-button cta-primary">
+                    <i class="fas fa-utensils"></i> View Menu
+                </a>
+                <a href="https://maps.app.goo.gl/cazXCWmSw3ZTTigx7" target="_blank" class="cta-button cta-primary">
+                    <i class="fas fa-map"></i> Google Maps
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Info Bar -->
+    <section class="quick-info">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-rupee-sign"></i>
+                    <h4>₹400–600</h4>
+                    <p>Per Person</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <h4>Open until 10:30 PM</h4>
+                    <p>Today's Timings</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-wifi"></i>
+                    <h4>Free WiFi</h4>
+                    <p>Work Friendly</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-parking"></i>
+                    <h4>Free Parking</h4>
+                    <p>Car & Street Parking</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-wheelchair"></i>
+                    <h4>Wheelchair Accessible</h4>
+                    <p>Fully Inclusive</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Story</h2>
+                <p>A modern cafe and hangout with a spacious interior offering snacks, sandwiches, and sweets in a cozy, welcoming atmosphere.</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://im.whatshot.in/img/2021/Feb/162045-d-1612559722.jpg" alt="Cafe LazyMojo Interior">
+                </div>
+                
+                <div class="about-text">
+                    <h3>More Than Just a Cafe</h3>
+                    <p>Cafe LazyMojo is a popular café in Jaipur with a spacious seating arrangement and a diverse menu. It works perfectly for casual outings with friends, romantic dates, or even solo work sessions with your laptop.</p>
+                    <p>We pride ourselves on our great coffee, delicious desserts, and extensive tea selection. Our menu features both vegetarian and vegan options, organic dishes, and a carefully curated wine list.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Great Coffee & Desserts</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Vegetarian & Vegan Options</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Wheelchair Accessible</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Free WiFi & Parking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Image Gallery -->
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://im.whatshot.in/img/2020/May/88273584-3012341982118347-830293109043625984-n-1590057542.jpg?wm=1&w=1200&h=630&cc=1" alt="Cafe Ambiance">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://www.holidify.com/images/cmsuploads/compressed/lazymojo_20180327140553.jpg" alt="Cafe Seating">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://im.whatshot.in/content/2015/Aug/1439271294-cafelazymojo.jpg" alt="Cafe Food">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://www.crazymasalafood.com/wp-content/images/cafe-lazy-mojo-1.png" alt="Cafe Exterior">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Highlights -->
+    <section class="section" id="menu" style="background-color: var(--cream);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Menu Highlights</h2>
+                <p>Our most popular dishes and beverages loved by thousands of customers</p>
+            </div>
+            
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-img">
+                        <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Cappuccino Latte">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Cappuccino Latte</h3>
+                        <p>Perfectly brewed coffee with creamy milk foam</p>
+                        <div class="menu-price">₹250</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img">
+                        <img src="https://images.unsplash.com/photo-1567306301408-9b74779a11af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Blueberry Cheesecake">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Blueberry Cheesecake</h3>
+                        <p>Rich cream cheese cake with blueberry compote</p>
+                        <div class="menu-price">₹320</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Paneer Tikka Pizza">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Paneer Tikka Pizza</h3>
+                        <p>Wood-fired pizza with spiced paneer tikka topping</p>
+                        <div class="menu-price">₹380</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Imli Bunta Mojito">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Imli Bunta Mojito</h3>
+                        <p>Refreshing tamarind mojito with mint and spices</p>
+                        <div class="menu-price">₹220</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="cta-button cta-primary">
+                    <i class="fas fa-book-open"></i> View Full Menu
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section experience-section" id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>The LazyMojo Experience</h2>
+                <p>Discover what makes our cafe special for different occasions and visitors</p>
+            </div>
+            
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3>For Groups</h3>
+                    <p>Spacious seating perfect for gatherings with friends and family celebrations</p>
+                </div>
+                
+                <div class="experience-card">
+                    <div class="experience-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Remote Work</h3>
+                    <p>Free high-speed WiFi, comfortable seating, and power outlets for productive work sessions</p>
+                </div>
+                
+                <div class="experience-card">
+                    <div class="experience-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Romantic Dates</h3>
+                    <p>Cozy, intimate atmosphere with candlelight dinners and premium wine selection</p>
+                </div>
+                
+                <div class="experience-card">
+                    <div class="experience-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Dining Options</h3>
+                    <p>Breakfast, brunch, lunch, dinner, and dessert with table service available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact -->
+    <section class="section" id="location">
+        <div class="container">
+            <div class="section-title">
+                <h2>Find Us</h2>
+                <p>Visit us at our convenient location in Malviya Nagar, Jaipur</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="map-container">
+                    <!-- Fixed Google Map with correct Cafe LazyMojo location -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.221712829987!2d75.8207999!3d26.8925317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db6b2c7c546af%3A0x2f1c1b42d64c8e5f!2sCafe%20LazyMojo!5e0!3m2!1sen!2sin!4v1690000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Address</h4>
+                            <p>H1, H2, SL Marg, opp. Genpact Jaipur, Lal Bahadur Nagar, Malviya Nagar, Jaipur, Rajasthan 302018</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Phone Number</h4>
+                            <p><a href="tel:09828950999" style="color: var(--primary-brown); text-decoration: none; font-weight: 600;">098289 50999</a></p>
+                            <p>Call for reservations, inquiries, or takeaway orders</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Opening Hours</h4>
+                            <p><strong>Everyday:</strong> 8:00 AM - 10:30 PM</p>
+                            <p><em>Brunch, lunch, and dinner reservations recommended</em></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-buttons">
+                        <a href="https://maps.app.goo.gl/cazXCWmSw3ZTTigx7" target="_blank" class="cta-button cta-primary">
+                            <i class="fas fa-map-marked-alt"></i> Google Maps
+                        </a>
+                        <a href="tel:09828950999" class="cta-button cta-secondary">
+                            <i class="fas fa-phone"></i> Call Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="section" id="reviews" style="background-color: var(--cream);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Customer Reviews</h2>
+                <p>See what our customers love about Cafe LazyMojo</p>
+            </div>
+            
+            <div class="reviews-container">
+                <div class="overall-rating">
+                    <h3>Overall Rating</h3>
+                    <div class="rating-number">4.3</div>
+                    <!-- FIXED: Stars are now centered properly -->
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>Based on 6,957 reviews</p>
+                    <p style="margin-top: 15px; color: var(--accent-green); font-weight: 600;">
+                        <i class="fas fa-thumbs-up"></i> Mostly Positive
+                    </p>
+                </div>
+                
+                <div class="review-cards">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-name">Kamlesh Sharma</div>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p>"Cafe LazyMojo stands out for its pleasant ambiance and well-prepared food. The attentive service makes the overall experience relaxing and enjoyable."</p>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-name">Mukti Swaroop Pradhan</div>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <p>"Cafe LazyMojo is a popular café with a spacious seating arrangement and a diverse menu. It works well for a casual outing with friends."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: 20px;">
+                        <i class="fas fa-mug-hot" style="color: white;"></i>
+                        <h1 style="color: white;">Cafe LazyMojo</h1>
+                    </div>
+                    <p>Modern cafe and hangout with a spacious interior offering snacks, sandwiches, and sweets in Jaipur.</p>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#location">Location</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Dine-in</a></li>
+                        <li><a href="#">Takeaway</a></li>
+                        <li><a href="#">Delivery</a></li>
+                        <li><a href="#">No-contact Delivery</a></li>
+                        <li><a href="#">Outdoor Seating</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> Malviya Nagar, Jaipur</li>
+                        <li><i class="fas fa-phone" style="margin-right: 10px;"></i> 098289 50999</li>
+                        <li><i class="fas fa-envelope" style="margin-right: 10px;"></i> info@cafelazymojo.com</li>
+                        <li><i class="fas fa-clock" style="margin-right: 10px;"></i> 8:00 AM - 10:30 PM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Cafe LazyMojo. All rights reserved. | Designed to enhance your coffee experience</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+
+        // Toggle mobile menu on button click
+        mobileMenuBtn.addEventListener('click', function() {
+            if (mobileNav.classList.contains('active')) {
+                // If menu is open, close it
+                mobileNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = 'auto';
+            } else {
+                // If menu is closed, open it
+                mobileNav.classList.add('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+                document.body.style.overflow = 'hidden';
+            }
+        });
+
+        // Close mobile menu with close button
+        mobileCloseBtn.addEventListener('click', function() {
+            mobileNav.classList.remove('active');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close mobile menu when clicking a link
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!mobileMenuBtn.contains(event.target) && !mobileNav.contains(event.target) && mobileNav.classList.contains('active')) {
+                mobileNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if(window.scrollY > 100) {
+                header.style.padding = '8px 0';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.padding = '12px 0';
+                header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.05)';
+            }
+        });
+        
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('.section, .quick-info, .menu-item, .experience-card, .review-card').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Initialize with hero already visible
+        document.querySelector('.hero').classList.add('fade-in');
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if(targetElement) {
+                        // Close mobile menu if open
+                        mobileNav.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                        
+                        // Scroll to target
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Touch-friendly hover effects for mobile
+        document.addEventListener('touchstart', function() {}, {passive: true});
+    </script>
+</body>
+</html>
